@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+backend/certiguard.db
+backend/data/*.json
+.env
