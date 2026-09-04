@@ -273,7 +273,7 @@ http://localhost:5173
 
 A typical certificate verification process:
 
-```
+
 Upload Certificate
         ↓
 Extract PDF Evidence
@@ -301,7 +301,7 @@ Generate Verification Result
 Store Audit Record
         ↓
 Generate PDF Report
-```
+
 
 ---
 
@@ -363,9 +363,9 @@ This creates a tamper-evident chain of verification records.
 
 Run the analysis tests from the project root:
 
-```bash
+
 pytest
-```
+
 
 The test suite validates important certificate analysis and risk-detection functionality.
 
@@ -394,7 +394,6 @@ The project demonstrates how multiple independent evidence sources can be combin
 ## 👨‍💻 Developed By
 
 **Yash Mehra**
-BCA Student, Graphic Era Hill University
 
 ---
 
