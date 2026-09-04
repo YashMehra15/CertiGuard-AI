@@ -1,34 +1,57 @@
-# CertiGuard AI 10.0 — Digital Certificate Forensics & Verification
+# CertiGuard AI
+A full-stack certificate forensics and verification platform that detects tampered or fraudulent academic/course certificates across multiple issuers, backed by a local blockchain-style audit ledger.
 
-A full-stack BCA major-project implementation for detecting altered academic/course certificates across heterogeneous issuers such as NPTEL, Saylor Academy, Analytics Vidhya, NIELIT, SWAYAM, Coursera, Great Learning and unknown providers.
+---
 
-## What this version adds
+## 🚀 Features
+* Universal PDF/image extraction (native PDF text + OCR + hyperlinks + embedded images)
+* Multi-issuer recognition (NPTEL, Saylor Academy, Analytics Vidhya, NIELIT, SWAYAM, Coursera, Great Learning, and unknown providers)
+* Issuer-aware certificate ID extraction and QR code decoding
+* Verifiable Credential (VC) JSON parsing for QR payloads
+* Cross-source consistency checks (name, course, certificate ID vs QR claims)
+* Duplicate and same-ID/different-file tampering detection
+* PDF metadata and recompression forensic screening
+* Explainable tampering signals with confidence scoring
+* Local append-only blockchain demo ledger with chain verification
+* Role-based authentication (Student / Admin)
+* Admin reference registry, audit trail, and dashboard analytics
+* Downloadable PDF authenticity report
 
-- Universal PDF/image extraction: native PDF text + OCR + PDF hyperlinks + embedded images.
-- Issuer recognition using text, official verification domains and conservative template fingerprints.
-- Issuer-aware certificate ID extraction. NPTEL prioritizes its long ID and QR; Saylor recognizes its certificate-code pattern; Analytics Vidhya handles date/ID layout.
-- QR decoding from original embedded PDF images before page rendering.
-- Verifiable Credential JSON parsing for QR payloads such as Wingspan/Infosys-style credentials.
-- Cross-source consistency checks: name, course and certificate ID against QR claims.
-- Optional registered-student/course consistency checks.
-- Exact duplicate and same-certificate-ID/different-file detection.
-- Basic PDF metadata and recompression forensic screening (screening only, not proof).
-- Explainable tampering signals and confidence score.
-- Local append-only-style blockchain demo ledger with chain verification.
-- Student registration/login and admin role.
-- Admin reference registry for authorized test records.
-- Audit trail and dashboard analytics.
-- Downloadable PDF authenticity report.
-- Official verification source link when an issuer/QR exposes one.
+---
 
-## Demo credentials
+## 🛠 Tech Stack
 
-Admin: `admin@certiguard.local` / `admin123`
+### Frontend:
+* React.js
+* Vite
+* JavaScript (JSX)
+* lucide-react
 
-## Run on Windows / VS Code
+### Backend:
+* Python
+* FastAPI
+* SQLite
+* PyMuPDF / pypdf (PDF parsing)
+* OpenCV + Pillow (image processing)
+* pytesseract (OCR)
+* ReportLab (PDF report generation)
+
+---
+
+## ⚙️ How to Run Locally
+
+Clone the repository:
+```bash
+git clone https://github.com/YashMehra15/CertiGuard.git
+```
+
+Navigate to project folder:
+```bash
+cd CertiGuard
+```
 
 ### Backend
-```powershell
+```bash
 cd backend
 python -m venv .venv
 .venv\Scripts\activate
@@ -36,39 +59,51 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-API: http://127.0.0.1:8000  | Swagger: http://127.0.0.1:8000/docs
+Create `.env` file in `backend/` (see `.env.example`):
+```env
+TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
+```
+
+Backend API → http://127.0.0.1:8000
+Swagger Docs → http://127.0.0.1:8000/docs
 
 ### Frontend — second terminal
-```powershell
+```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-Open http://localhost:5173
+Frontend → http://localhost:5173
 
-### OCR
-OCR is optional for certificates whose important fields exist in the PDF text/QR. For graphical issuer logos, install Tesseract and ensure it is at a standard path or set `TESSERACT_CMD`. Run:
+### OCR (optional)
+OCR is only needed for certificates whose fields aren't present in PDF text/QR. Install Tesseract and set `TESSERACT_CMD`, or run:
 ```powershell
 powershell -ExecutionPolicy Bypass -File backend\setup_ocr_windows.ps1
 ```
 
-## Test strategy
+---
 
-Recommended supplied test set:
-- NPTEL Java certificate
-- NPTEL Soft Skills certificate
-- Saylor C++ certificate
-- Analytics Vidhya Generative AI with AWS certificate
-- Infosys Springboard certificate
-- NIELIT Yuva AI for All certificate
+## 🌐 Local Development URLs
+* Frontend → http://localhost:5173
+* Backend → http://127.0.0.1:8000
 
-The system must not label missing QR/OCR/ID as fraud. A red result requires concrete conflict evidence such as PDF name vs QR name, certificate ID vs QR ID, registered identity mismatch, or same certificate ID appearing with materially conflicting fields.
+---
 
-## Architecture
+## 🔑 Demo Credentials
+Admin: `admin@certiguard.local` / `admin123`
 
-Upload → Document analyzer → PDF text/OCR/QR/links → evidence fusion → issuer adapter → field extraction → official verification source → forensic consistency → duplicate/fingerprint analysis → risk engine → blockchain anchor → audit/report.
+---
 
-## Important limitation
+## 🎯 Purpose
+This project demonstrates a complete certificate verification system with issuer-aware forensic analysis, QR/VC validation, tampering detection, and a local blockchain-anchored audit trail.
 
-Blockchain anchoring in this project is a local demonstrator ledger, not a public decentralized blockchain. Official issuer verification remains the authoritative source when available.
+> **Note:** Blockchain anchoring here is a local demonstrator ledger, not a public decentralized blockchain. Official issuer verification remains the authoritative source when available.
+
+---
+
+## 👨‍💻 Developed by
+Yash Mehra
+
+## ⭐ Support
+If you like this project, give it a ⭐ on GitHub and share it!
